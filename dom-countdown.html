@@ -1,0 +1,138 @@
+<!---New year count down---> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+            background-color: aquamarine;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center {
+            width: 80%;
+            height: 50%;
+            background-color: aqua;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 20px 20px 20px rgb(74, 71, 71);
+            border-radius: 10px;
+        }
+
+        .center .first,
+        .center .second {
+            height: 100%;
+            width: 100%;
+        }
+
+        .center .first {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            justify-content: center;
+            font-family: algerian;
+            font-style: italic;
+            text-shadow: 7px 5px rgb(236, 229, 229);
+        }
+
+        .center .second {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .center .second .items {
+            width: 20%;
+            text-align: center;
+        }
+
+        .center .second .items h3,
+        .center .second .items h4 {
+            background-color: rgb(8, 194, 194);
+            padding: 10px;
+            color: black;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2rem;
+            box-shadow: 10px 10px 10px rgb(71, 67, 67);
+        }
+
+        .center .second .items h3 {
+            border-radius: 10px 10px 0px 0px;
+        }
+
+        .center .second .items h4 {
+            border-radius: 0px 0px 10px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="center">
+            <div class="first">Time in new year 2026</div>
+            <div class="second">
+                <div class="items">
+                    <h3 id="days">00</h3>
+                    <h4>Days</h4>
+                </div>
+                <div class="items">
+                    <h3 id="hours">00</h3>
+                    <h4>Hours</h4>
+                </div>
+                <div class="items">
+                    <h3 id="minutes">00</h3>
+                    <h4>Minutes</h4>
+                </div>
+                <div class="items">
+                    <h3 id="seconds">00</h3>
+                    <h4>Seconds</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let center = document.querySelector(".center")
+        let first = document.querySelector(".first")
+        let second = document.querySelector(".second")
+        let days = document.querySelector("#days")
+        let hours = document.querySelector("#hours")
+        let minutes = document.querySelector("#minutes")
+        let seconds = document.querySelector("#seconds")
+        let targetTime = new Date(2026, 0)
+        setInterval(() => {
+            let currentTime = new Date()
+            let diff = targetTime - currentTime
+            if (diff > 0) {
+                let num = parseInt(diff / (1000 * 60 * 60 * 24))
+                days.innerHTML = num < 10 ? "0" + num : num
+
+                num = parseInt(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60))
+                hours.innerHTML = num < 10 ? "0" + num : num
+
+                num = parseInt(diff % (1000 * 60 * 60) / (1000 * 60))
+                minutes.innerHTML = num < 10 ? "0" + num : num
+
+                num = parseInt(diff % (1000 * 60) / (1000))
+                seconds.innerHTML = num < 10 ? "0" + num : num
+            }
+            else {
+                center.removeChild(second)
+                second.innerHTML = "Happy New Year"
+            }
+        })
+    </script>
+</body>
+
+</html>
